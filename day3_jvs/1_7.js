@@ -1,10 +1,9 @@
-// 1.6 
+//1.7
 function draw(n){
     let text = "";
     let z = 1;
-        for (let i = 1; i <= n; i++){
-            for (let j = 1; j <= n; j++ ){
-                 //text += j;
+        for (let i = 0; i < n; i++){
+            for (let j = 0; j < n; j++ ){
                  text += z;
                  z++;
             }
@@ -16,3 +15,4 @@ draw(2);
 draw(3);
 draw(4);
 
+// ยังไม่เสร็จ

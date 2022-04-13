@@ -1,8 +1,10 @@
-// 1.4 
+//1.8
+//ใกล้เคียง
+
 function draw(n){
     let text = "";
-        for (let i = 1; i <= n; i++){
-            for (let j = 1; j <= n; j++ ){
+        for (let i = 0; i <= n; i+=2){
+            for (let j = 1; j <= 1; j++ ){
                  text += i;
             }
                  text += "\n";
@@ -13,4 +15,4 @@ function draw(n){
     draw(3);
     draw(4);
 
-    
+

@@ -1,4 +1,4 @@
-// 1.1 finished
+// 1.1 
 function draw(n) {
     text = '';
     for (let i = 0; i <= 0; i++) {
