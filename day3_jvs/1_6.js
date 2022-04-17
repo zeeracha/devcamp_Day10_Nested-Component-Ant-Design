@@ -1,4 +1,4 @@
-// 1.6 
+// 1.6 finshed
 function draw(n){
     let text = "";
     let z = 1;
