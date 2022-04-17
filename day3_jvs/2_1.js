@@ -1,12 +1,12 @@
-// 1.11 finished
+//2.1 finished
 function draw(n) {
     text = "";
-    for (let i = 1; i <= n; i++){
-        for (let j = 1; j <= n; j++) {
-            if (i === j){
-                text += "_";
-            } else {
+    for (let i = 0; i < n; i++){
+        for (let j = 0; j < n; j++) {
+            if (i >= j){
                 text += "*";
+            } else {
+                text += "_";
             }
         }   
         text += "\n";

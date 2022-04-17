@@ -1,4 +1,4 @@
-
+// 2.9 finished
 function draw(n) {
     let sym = "";
     
@@ -25,3 +25,4 @@ function draw(n) {
 draw(2);
 draw(3);
 draw(4);
+

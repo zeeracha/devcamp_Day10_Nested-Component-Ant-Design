@@ -1,18 +1,18 @@
-//1.7
+//1.7 inished
+
 function draw(n){
     let text = "";
-    let z = 1;
-        for (let i = 0; i < n; i++){
-            for (let j = 0; j < n; j++ ){
-                 text += z;
-                 z++;
+    let z = n*n;
+        for (let i = 1; i <= n; i++){
+            for (let j = 1; j <= n; j++){
+                text += z;
+                z--;
             }
-                 text += "\n";
+            text += "\n"
         }
         console.log(text);
-    }
-draw(2); 
+}
+draw(2);
 draw(3);
 draw(4);
 
-// ยังไม่เสร็จ
