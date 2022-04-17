@@ -1,0 +1,19 @@
+*{
+    margin: 10;
+    padding: 10;
+}
+.app img{
+    height: 250px;
+    width: 250px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 30px;
+}
+.app table tr{
+    margin-left: 400px;
+}
+
+header {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
