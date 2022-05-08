@@ -27,7 +27,6 @@ const FormComp = () => {
     }
   }
 
-
   return (
     <Form
       name="basic"

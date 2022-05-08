@@ -9,12 +9,11 @@ import {
   DatePicker,
   InputNumber,
   Upload,
+  Radio,
 } from 'antd';
-import RadioComp from './radio.js';
 import { Checkbox } from 'antd';
-import Avatar from './picture';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-
+import moment from "moment";
 
 
 
@@ -33,6 +32,38 @@ function onSearch(val) {
   console.log('search:', val);
 }
 
+const { RangePicker } = DatePicker;
+function disabledDate(current) {
+  // Can not select days before today and today
+  return current && current < moment().endOf("day").subtract(1, "days");
+}
+
+const customValidate = (rule, value) => {
+  //console.log(value);
+  if (value < 18) {
+    return Promise.reject(new Error("อายุน้อยเกินไป"));
+  } else if (value >= 60) {
+    return Promise.reject(new Error("อายุมากเกินไป"));
+  } else {
+    return Promise.resolve();
+  }
+};
+
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 4,
+    },
+    sm: {
+      span: 16,
+      offset: 4,
+    },
+  },
+};
+
+
+
 
 const FormComp = () => {
   const [componentSize, setComponentSize] = useState('default');
@@ -41,12 +72,26 @@ const FormComp = () => {
     setComponentSize(size);
   };
 
+  const onFinish =async (values) => {
+    console.log(values.firstname);
+    console.log(values.lastname);
+    console.log(values.age);
+    console.log(values.gender);
+    console.log(values.province);
+    if (values.other !== undefined) {
+      console.log(values.other);
+    }
+    console.log(`${values.memberperiod[0]._d} to ${values.memberperiod[1]._d}`);
+    console.log(values.cv);
+
+    console.log(values.employed);
+    console.log(values.acceptTerm);
+    console.log(values.addi);
+  };
+
   function onChange3(e) {
     console.log(`checked = ${e.target.checked}`);
   }
-
-  // const normFile = (e) => {
-  //   console.log('Upload event:', e);
 
   return (
     <Form
@@ -62,43 +107,38 @@ const FormComp = () => {
       }}
       onValuesChange={onFormLayoutChange}
       size={componentSize}
+      onFinish={onFinish}
     >
-      {/* <Form.Item label="Form Size" name="size">
-        <Radio.Group>
-          <Radio.Button value="small">Small</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="large">Large</Radio.Button>
-        </Radio.Group>
-      </Form.Item> */}
-      {/* <Form.Item label="Username">
-        <Input />
-      </Form.Item>
+     
 
-      <Form.Item label="Email">
-        <Input />
-      </Form.Item>
-
-      <Form.Item label="Password">
-        <Input />
-      </Form.Item> */}
-
-      <Form.Item label="First Name">
+      <Form.Item name="firstname" label="First Name">
         <Input max={50}/>
       </Form.Item>
 
-      <Form.Item label="Last Name">
+      <Form.Item name="lastname" label="Last Name">
         <Input max={50}/>
       </Form.Item>
       
       
-      <Form.Item label="Age">
-        <InputNumber min={1} max={99} defaultValue={3} onChange={onChange} />
+      <Form.Item  name="age" label="Age" rules={[
+        {
+          type: "number",
+          min: 0,
+          max: 99,
+          validator: customValidate,
+        },
+      ]}>
+        <InputNumber onChange={onChange} />
       </Form.Item>
 
-      <Form.Item label="Gender">
-        <RadioComp/>
+      <Form.Item name="gender" label="Gender">
+      <Radio.Group >
+      <Radio value="male">Male</Radio>
+      <Radio value="female">Female</Radio>
+    </Radio.Group>
       </Form.Item>
-      <Form.Item label="Province">
+
+      <Form.Item name="province" label="Province">
       <Select
     showSearch
     placeholder="Bangkok"
@@ -115,18 +155,41 @@ const FormComp = () => {
     <Option value="pathumThani">Pathum Thani</Option>
     <Option value="samutPrakan">Samut Prakan</Option>
     <Option value="samutSakhon">Samut Sakhon</Option>
+    <Option value="abroad">Abroad</Option>
   </Select>
       </Form.Item>
+
+      <Form.Item
+        noStyle
+        shouldUpdate={(prevValues, currentValues) =>
+          prevValues.province !== currentValues.province
+        }
+      >
+        {({ getFieldValue }) =>
+          getFieldValue("province") === "abroad" ? (
+            <Form.Item
+              name="other"
+              label="Other"
+            >
+              <Input />
+            </Form.Item>
+          ) : null
+        }
+      </Form.Item>
       
-      <Form.Item label="Member Period">
+      {/* <Form.Item label="Member Period">
         <DatePicker />
+      </Form.Item> */}
+
+      <Form.Item name="memberperiod" label="Member Period">
+        <RangePicker disabledDate={disabledDate} />
       </Form.Item>
 
       {/* <Form.Item>
         <Avatar />
       </Form.Item> */}
 
-      <Form.Item
+      {/* <Form.Item
         name="upload"
         label="Upload"
         valuePropName="fileList"
@@ -136,22 +199,50 @@ const FormComp = () => {
         <Upload name="logo" action="/upload.do" listType="picture">
           <Button icon={<UploadOutlined />}>Click to upload your CV</Button>
         </Upload>
+      </Form.Item> */}
+
+      <Form.Item name="cv" label="Put your cv link here">
+        <Input/>
       </Form.Item>
       
-      <Form.Item label="Employed">
+      {/* <Form.Item name="employed" label="Employed">
       <Checkbox onChange3={onChange3}></Checkbox>
-      </Form.Item>
+      </Form.Item> */}
 
-      <Form.Item label="Accept Term">
+      {/* <Form.Item name="acceptTerm" label="Accept Term">
       <Checkbox onChange3={onChange3}>I accept the term and condition</Checkbox>
+      </Form.Item> */}
+
+      <Form.Item name="employed" valuePropName="checked" label="employed"
+        
+        //{...tailFormItemLayout}
+      >
+        <Checkbox> </Checkbox>
       </Form.Item>
 
-      <Form.Item label="Additional Information">
+      
+      <Form.Item
+        name="acceptTerm"
+        valuePropName="checked"
+        rules={[
+          {
+            validator: (_, value) =>
+              value
+                ? Promise.resolve()
+                : Promise.reject(new Error("Please accept term")),
+          },
+        ]}
+        {...tailFormItemLayout}
+      >
+        <Checkbox>I accept the term and condition</Checkbox>
+      </Form.Item>
+
+      <Form.Item name="addi" label="Additional Information">
         <textarea></textarea>
       </Form.Item>
 
      
-      <Form.Item
+      <Form.Item name="submit"
         wrapperCol={{
           xs: {
             span: 24,
@@ -163,6 +254,7 @@ const FormComp = () => {
           },
         }}
       >
+
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
