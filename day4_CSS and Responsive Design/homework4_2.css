@@ -1,0 +1,27 @@
+.mobileOnly{
+    color: red;
+    text-align: right;
+}
+
+@media (min-width: 576px) {}
+@media (min-width: 768px) {}
+@media (min-width: 992px) {
+    .largeScreen {background-color:white;}
+    .mobileOnly {display: none;}
+}
+@media (min-width: 1200px) {}
+
+@media (max-width: 500px) {}
+@media (max-width: 500px) {}
+@media (max-width: 500px) {
+    .smallScreen {background-color:white;}
+    .link {display: none;}
+}
+@media (max-width: 500px) {} 
+
+
+@media only screen and (min-width: 700px) {
+    div.head {
+      font-size: 80px;
+    }
+  }

@@ -1,0 +1,14 @@
+.Navbar{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    padding: 5px 50px;
+    background-color: #F3EADB;
+    align-items: center;
+}
+.CreatePikka{
+    font-family: 'Barcelona', Courier, monospace;
+    font-size: medium;
+    font-weight: 300;
+    font-style: initial;
+}

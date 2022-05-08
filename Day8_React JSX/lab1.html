@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1: Class creation</title>
+</head>
+<body>
+    <script>
+        class Employee {
+  constructor(firstname, lastname, salary) {
+    this.salary = salary; // simulate private variable
+
+    this.firstname = firstname; // public property
+    this.lastname = lastname; // public property
+  }
+  getSalary() { // simulate public method
+      return this.salary;
+  }
+}
+let dang = new Employee('Dang','Red', 10000);
+console.log(dang.firstname); // Dang
+console.log(dang.lastname); // Red
+console.log(dang.getSalary()); // 10000
+
+
+
+
+class Programmer extends Employee{
+    constructor(firstname, lastname,salary){
+        super(firstname, lastname, salary);
+    }
+    getSalary(){ // simulate public method
+    return super.getSalary()*4;
+  };
+  hello() { // simulate public method
+    console.log("Hi. "+this.firstname+", long time no see!");
+  }
+  working(){
+      console.log(`${this.firstname} is working`)
+  }
+}
+let prog = new Programmer('Zeera','Cha', 100000);
+console.log(prog.firstname); // Zeera
+console.log(prog.lastname); // Cha
+prog.hello(); // Hi, bitch. Zeera
+console.log(prog.getSalary()); // 400000
+prog.working();
+
+    </script>
+</body>
+</html>

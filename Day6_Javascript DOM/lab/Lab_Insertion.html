@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Number</title>
+</head>
+<body>
+    <button id="btn1">Click</button>
+
+    <div id="result">2</div>
+
+    <input type="text1" type="numner" id="text1" value="2">
+    <script>
+        let count = 2;
+        function countNumber(){
+        count +=1;
+        document.getElementById("result").innerHTML = "<strong style = 'color:red'>" + count + "</strong>";
+        document.getElementById("text").value = count;
+        }
+
+        function setNumber(e){
+            console.log(e);
+            count = +e.targer.value;
+            document.getElementById("result").innerHTML = e.target.value;
+        }
+
+        document.getElementById("text1").addEventListener("keyup", setNumber);
+        document.getElementById("btn1").addEventListener("click", setNumber);
+    </script>
+</body>
+</html>

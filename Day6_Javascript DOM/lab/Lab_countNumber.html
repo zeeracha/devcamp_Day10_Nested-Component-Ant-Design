@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Count</title>
+  </head>
+  <body>
+    <button id="btn1">Click</button>
+
+    <div id="result">0</div>
+
+    <script>
+        let count = 1;
+        function countNumber(){
+            document.getElementById("result").innerText = count;
+            count += 1;
+        }
+
+        document.getElementById("btn1").addEventListener("click",countNumber);
+    </script>
+  </body>
+</html>
