@@ -63,8 +63,6 @@ const tailFormItemLayout = {
 };
 
 
-
-
 const FormComp = () => {
   const [componentSize, setComponentSize] = useState('default');
 
